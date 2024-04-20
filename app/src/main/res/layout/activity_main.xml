@@ -11,22 +11,7 @@
     <com.vcreate.ecgchart.EcgGraphView
         android:id="@+id/wave1"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="50dp"/>
-
-    <com.vcreate.ecgchart.EcgGraphView
-        android:id="@+id/wave2"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="25dp"
-        android:layout_below="@id/wave1"/>
-
-    <com.vcreate.ecgchart.EcgGraphView
-        android:id="@+id/wave3"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="25dp"
-        android:layout_below="@id/wave2"/>
+        android:layout_height="192dp"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>
