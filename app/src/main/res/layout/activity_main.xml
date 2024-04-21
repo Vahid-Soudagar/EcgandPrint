@@ -12,13 +12,28 @@
         android:id="@+id/wave1"
         android:layout_width="match_parent"
         android:layout_height="192dp"
-        android:layout_centerInParent="true"/>
+        android:layout_marginTop="15dp"/>
 
-    <com.vcreate.ecgchart.EcgView
+    <com.vcreate.ecgchart.EcgGraphView
+        android:id="@+id/wave2"
         android:layout_width="match_parent"
         android:layout_height="192dp"
+        android:layout_marginTop="15dp"
         android:layout_below="@id/wave1"/>
 
+    <com.vcreate.ecgchart.EcgGraphView
+        android:id="@+id/wave3"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/wave2"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/open"
+        android:text="Choose File"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/wave3"/>
 
 </RelativeLayout>
