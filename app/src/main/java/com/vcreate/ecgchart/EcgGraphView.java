@@ -17,7 +17,9 @@ import android.view.SurfaceView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
-import java.util.Random;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 public class EcgGraphView extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -26,7 +28,11 @@ public class EcgGraphView extends SurfaceView implements SurfaceHolder.Callback 
     private int mWidth;
 
     private boolean isSurfaceViewAvailable;
-    private Paint wavePaint;
+    private int mDataBufferIndex;
+    private ArrayList<Float> list;
+
+    private float cellSize = 0;
+
 
     public EcgGraphView(Context context) {
         this(context, null);
@@ -50,11 +56,8 @@ public class EcgGraphView extends SurfaceView implements SurfaceHolder.Callback 
 
     }
 
-    @Override
-    protected void onDraw(@NonNull Canvas canvas) {
-        super.onDraw(canvas);
-
-        // Define graph dimensions
+    private void drawGridLines(Canvas canvas) {
+         // Define graph dimensions
         float graphWidthMM = 250; // in mm
         float graphHeightMM = 40; // in mm
 
@@ -84,7 +87,7 @@ public class EcgGraphView extends SurfaceView implements SurfaceHolder.Callback 
         float deltaY = (float) graphHeight / horizontalLines;
 
         // Ensure equal spacing for square grid cells
-        float cellSize = Math.min(deltaX, deltaY);
+        cellSize = Math.min(deltaX, deltaY);
         deltaX = cellSize;
         deltaY = cellSize;
 
@@ -104,11 +107,20 @@ public class EcgGraphView extends SurfaceView implements SurfaceHolder.Callback 
     }
 
 
+    @Override
+    protected void onDraw(@NonNull Canvas canvas) {
+        super.onDraw(canvas);
+        drawGridLines(canvas);
+        drawWaveform(canvas);
+    }
+
 
 
 
     @Override
     public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
+        mWidth = width;
+        mHeight = height;
     }
 
     @Override
@@ -127,13 +139,52 @@ public class EcgGraphView extends SurfaceView implements SurfaceHolder.Callback 
     }
 
     private void init() {
+        mDataBufferIndex = 0;
+
         setBackgroundColor(ContextCompat.getColor(getContext(), R.color.ecg));
-        wavePaint = new Paint();
-        gridPaint.setColor(ContextCompat.getColor(getContext(), R.color.black));
-        gridPaint.setStrokeWidth(2);
         gridPaint = new Paint();
         gridPaint.setColor(ContextCompat.getColor(getContext(), R.color.r1));
-        gridPaint.setStrokeWidth(2);
+        gridPaint.setStrokeWidth(1);
     }
 
+    public void drawWaveform(Canvas canvas) {
+        // use the list of points and draw the graph here
+        if (list != null && !list.isEmpty()) {
+            Paint waveformPaint = new Paint();
+            waveformPaint.setColor(ContextCompat.getColor(getContext(), R.color.black));
+            waveformPaint.setStrokeWidth(2);
+            waveformPaint.setAntiAlias(true);
+
+
+            float gridSize = getCellSize();
+            float gridSizeInMillivolts = 1.0f;
+
+            // Define the scale for mapping millivolts to pixels
+            float millivoltsPerPixel = gridSizeInMillivolts / gridSize;
+
+
+
+            // Define the initial position of the waveform
+            float startX = 0;
+            float startY = getHeight() / 2f;
+
+            // Iterate through the list of points and draw the waveform
+            for (int i = 0; i < list.size() - 1; i++) {
+                float x1 = startX + i;
+                float y1 = startY - (list.get(i) / millivoltsPerPixel);
+                float x2 = startX + i + 1;
+                float y2 = startY - (list.get(i + 1) / millivoltsPerPixel);
+
+                canvas.drawLine(x1, y1, x2, y2, waveformPaint);
+            }
+        }
+    }
+
+    public void addAmp(@NotNull ArrayList<Float> millivoltsList) {
+        this.list = millivoltsList;
+    }
+
+    private float getCellSize() {
+        return cellSize;
+    }
 }
