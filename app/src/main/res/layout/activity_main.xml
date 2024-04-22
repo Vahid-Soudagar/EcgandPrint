@@ -5,26 +5,26 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".ecg.MainActivity"
     android:background="@color/white">
 
-    <com.vcreate.ecgchart.EcgGraphView
+    <com.vcreate.ecgchart.ecg.EcgGraphView
         android:id="@+id/wave1"
         android:layout_width="match_parent"
-        android:layout_height="192dp"
+        android:layout_height="100dp"
         android:layout_marginTop="15dp"/>
 
-    <com.vcreate.ecgchart.EcgGraphView
+    <com.vcreate.ecgchart.ecg.EcgGraphView
         android:id="@+id/wave2"
         android:layout_width="match_parent"
-        android:layout_height="192dp"
+        android:layout_height="100dp"
         android:layout_marginTop="15dp"
         android:layout_below="@id/wave1"/>
 
-    <com.vcreate.ecgchart.EcgGraphView
+    <com.vcreate.ecgchart.ecg.EcgGraphView
         android:id="@+id/wave3"
         android:layout_width="match_parent"
-        android:layout_height="192dp"
+        android:layout_height="100dp"
         android:layout_marginTop="15dp"
         android:layout_below="@id/wave2"/>
 

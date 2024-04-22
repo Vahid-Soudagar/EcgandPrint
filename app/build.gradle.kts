@@ -48,4 +48,6 @@ dependencies {
 
     implementation("com.jjoe64:graphview:4.2.2")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    implementation(files("libs/HP-scan-sdk-1.0.1.aar"))
 }

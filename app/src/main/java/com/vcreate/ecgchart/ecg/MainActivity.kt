@@ -1,18 +1,15 @@
-package com.vcreate.ecgchart
+package com.vcreate.ecgchart.ecg
 
-import android.R.attr
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.hp.mobile.scan.sdk.model.ScanTicket
+import com.vcreate.ecgchart.R
 import java.io.BufferedReader
-import java.io.File
-import java.io.FileInputStream
-import java.io.IOException
 import java.io.InputStreamReader
 
 
@@ -23,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var ecgGraphView2: EcgGraphView
     private lateinit var ecgGraphView3: EcgGraphView
     private lateinit var button: Button
+    private var mScanTicket: ScanTicket? = null
 
 
     private var selectedFilePath: String? = null

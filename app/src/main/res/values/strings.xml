@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">EcgChart</string>
+    <string name="app_name">HPMobileScanSDKSample</string>
+    <string name="browsing_devices_title">Devices</string>
+    <string name="start_browsing">Start browsing</string>
+    <string name="stop_browsing">Stop browsing</string>
+
+    <string name="start_scan">Scan</string>
+    <string name="cancel">Cancel</string>
+    <string name="scanning_progress_title">Scanning…</string>
+    <string name="no_device">No device</string>
+    <string name="status_label">Status:</string>
+    <string name="adf_status_label">Adf Status:</string>
+    <string name="fetching_capabilities">Fetching capabilities…</string>
+    <string name="done">Done</string>
+    <string name="choose_setting">Unspecified</string>
+    <string name="retry">Retry</string>
+    <string name="x_offset">X offset</string>
+    <string name="y_offset">Y offset</string>
+    <string name="height">Height</string>
+    <string name="width">Width</string>
+    <string name="custom_area_dialog_title">Choose custom area</string>
+    <string name="ok">OK</string>
 </resources>

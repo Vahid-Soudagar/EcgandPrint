@@ -1,0 +1,29 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hp.mobile.scan.sdk.sample.ScannersBrowsingFragment">
+
+    <ListView
+        android:id="@+id/devices_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/devices_count_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:background="@android:color/darker_gray"
+        android:textColor="@android:color/white"
+        tools:ignore="RelativeOverlap" />
+
+    <ToggleButton
+        android:id="@+id/start_stop_discovering"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:textOff="@string/start_browsing"
+        android:textOn="@string/stop_browsing" />
+
+</FrameLayout>
